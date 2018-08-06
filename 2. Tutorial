@@ -1,0 +1,13 @@
+Start up MongoDB process :
+# .conf files are supplied in course
+mongod -f ~/university/m040/shared/rs1_linux.conf
+mongod -f ~/university/m040/shared/rs2_linux.conf
+mongod -f ~/university/m040/shared/rs3_linux.conf
+
+Initiate the Replica Set :
+mongo --eval 'rs.initiate()'
+
+add the remaining two nodes to the set: 
+mongo --eval "rs.add('$(hostname):27027');rs.add('$(hostname):27037')"
+mongo --eval 'rs.status()'
+
