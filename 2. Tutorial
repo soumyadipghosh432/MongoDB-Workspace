@@ -36,3 +36,8 @@ while True:
           print("Transient transaction error, retrying...")
           continue
       raise
+
+
+At minute 0:08, Norberto mentions 100 ms as slowOps threshold. 
+This is the default value and can be changed by setting slowMs value with the setProfilingLevel command or 
+by changing the configuration file option operationProfiling.slowOpThresholdMs.
