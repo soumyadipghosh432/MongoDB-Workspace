@@ -25,7 +25,7 @@ sudo apt-get install -y mongodb-org
 6. Unzip the tarball : tar xvf mongodb-linux-x86_64-ubuntu1604-4.0.1.tgz
 7. This will create the folder with same name. Move the folder to your desired location.
 8. Get into the /bin folder in the unzipped content in your location : cd ~/mongodb-linux-x86_64-ubuntu1604-4.0.1/bin
-9. All mongoDB will be stored into /data/db in your syste,. If the folder is not created then we need to create the same from root 
+9. All mongoDB will be stored into /data/db in your system. If the folder is not created then we need to create the same from root 
 and provide necessary permission in order to access the data from other user as well.
 10. Move to root with new shell level : sudo bash
 11. mkdir -p /data/db
@@ -36,9 +36,53 @@ and provide necessary permission in order to access the data from other user as 
 
 NOTE : THIS WILL NOT ALLOW TO START MONGO AS SERVICE
 
+Follow below steps to setup mongod as service:
+1. Create a config file:
+  A. sudo su
+  B. vi /etc/mongod.config
+  C. Put below conten :
+    systemLog:
+       destination: file
+       path: "/var/log/mongodb/mongod.log"
+       logAppend: true
+    storage:
+       journal:
+          enabled: true
+    processManagement:
+       fork: true
+    net:
+       bindIp: 127.0.0.1
+       port: 27017
+    setParameter:
+       enableLocalhostAuthBypass: false
+
+2. Note the location of mongod file. In our case (/usr/local/bin) this might be (/usr/bin)
+3. Create a service script : vi /lib/systemd/system/mongodb.service
+        [Unit]
+        Description=MongoDB Database Service
+        Wants=network.target
+        After=network.target
+
+        [Service]
+        ExecStart=/usr/local/bin/mongod --config /etc/mongod.conf
+        ExecReload=/bin/kill -HUP $MAINPID
+        Restart=always
+        User=mongodb
+        Group=mongodb
+        StandardOutput=syslog
+        StandardError=syslog
+
+        [Install]
+        WantedBy=multi-user.target
+
+This will setup a new service named mongod.
+It can be accessed by :
+A. sudo systemctl start mongodb / sudo systemctl stop mongodb
+B. sudo service mongodb start / sudo service mongodb stop
 
 
-### RUN ###
+
+############################# RUN (LINUX / UBUNTU) ###################################
 1. Start MongoDB.
 sudo service mongod start
 
@@ -62,3 +106,20 @@ Start a mongo shell on the same host machine as the mongod.
 Use the --host command line option to specify the localhost address (in this case 127.0.0.1) 
 and port that the mongod listens on:
 mongo --host 127.0.0.1:27017
+
+
+
+
+######################################### USING INSTALLER (WINDOWS) #####################################
+1. https://www.mongodb.com/download-center
+2. Community Server
+3. Select OS and Version
+4. Click on download to download the msi file
+5. Run the mongo installer and make a complete install
+6. Add the installation bin location to path variable
+7. Create directory : A) c:\data and B) c:\data\db
+8. Open CMD and run mongod. (path is already added)
+
+
+
+
