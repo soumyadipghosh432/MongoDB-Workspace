@@ -1,0 +1,13 @@
+Step 1: Stop the service
+sudo service mongod stop
+
+Step 2: Remove packages
+sudo apt-get purge mongodb-org*
+
+Step 3: Remove data directories
+sudo rm -r /var/log/mongodb
+sudo rm -r /var/lib/mongodb
+
+-r means recursive
+
+Reference: https://docs.mongodb.org/v3.0/tutorial/install-mongodb-on-ubuntu/
