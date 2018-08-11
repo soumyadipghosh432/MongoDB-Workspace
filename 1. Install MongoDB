@@ -1,3 +1,5 @@
+############################# USING TERMINAL ONLY (LINUX/MAC) ##########################################
+
 1. Import the public key used by the package management system
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
 
@@ -12,6 +14,28 @@ sudo apt-get update
 
 4. Install the MongoDB packages.
 sudo apt-get install -y mongodb-org
+
+
+######################################### USING INSTALLER (LINUX/ MAC)#####################################
+1. https://www.mongodb.com/download-center
+2. Community Server
+3. Select OS and Version
+4. Click on download to download the tarball
+5. Open terminal and change directory to Downloads.
+6. Unzip the tarball : tar xvf mongodb-linux-x86_64-ubuntu1604-4.0.1.tgz
+7. This will create the folder with same name. Move the folder to your desired location.
+8. Get into the /bin folder in the unzipped content in your location : cd ~/mongodb-linux-x86_64-ubuntu1604-4.0.1/bin
+9. All mongoDB will be stored into /data/db in your syste,. If the folder is not created then we need to create the same from root 
+and provide necessary permission in order to access the data from other user as well.
+10. Move to root with new shell level : sudo bash
+11. mkdir -p /data/db
+12. chmod 777 /data
+13. chmod 777 /data/db
+14. Run : ./mongod to start the service from the bin location
+15. You can copy all the programs from root access(sudo bash) to /usr/local/bin in order to run the mongod directly from any location.
+
+NOTE : THIS WILL NOT ALLOW TO START MONGO AS SERVICE
+
 
 
 ### RUN ###
