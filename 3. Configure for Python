@@ -1,0 +1,10 @@
+Install bottle
+Note : bottle is required to host the python application in localhost as web server
+
+pip3 install bottle
+
+
+Install pymongo
+Note: pymongo is required to connect the mongoDB with the python application
+
+pip3 install pymongo
