@@ -74,3 +74,13 @@ Java home: /usr/lib/jvm/java-8-oracle/jre
 Default locale: en_US, platform encoding: ANSI_X3.4-1968
 OS name: "linux", version: "3.13.0-32-generic", arch: "amd64", family: "unix"
 
+################### CREATE PROJECT MAVEN ####################
+1. mvn archetype:generate
+  Choose : Filter, Version (press ENTER for default)
+  Define : 'groupid' as the name you want for java package (this will reflect in another option after 2 more define)
+  Derfine : 'artifact' as the name you want for java project
+  Choose : Version snapshot (DEFAULT) and Package Name (by default same as groupid)
+  
+
+
+
