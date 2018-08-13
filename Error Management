@@ -1,0 +1,4 @@
+################## ERROR IN STARTING THE MONGOD : SOCKET REFUSE ########################
+Remove : sudo rm -rf /tmp/mongodb-27017.sock
+Start the mongod service
+check : ls -lsah /tmp/mongodb-27017.sock
