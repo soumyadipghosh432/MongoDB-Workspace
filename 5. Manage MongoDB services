@@ -1,0 +1,25 @@
+https://docs.mongodb.com/manual/tutorial/manage-mongodb-processes
+
+1. Specify a Data Directory - (Default is /data/db)
+mongod --dbpath /srv/mongodb/
+
+Note : The directory needs to be created before starting mongod
+
+
+2. Specify a TCP Port - (Default is 27017)
+mongod --port 12345
+
+
+3. Start mongod as a Daemon
+mongod --fork --logpath /var/log/mongodb.log
+
+
+4. Stop mongod (Mainly used when started as daemon)
+sudo mongod --shutdown
+
+
+5. Kill mongod process
+kill <mongod process ID>
+kill -2 <mongod process ID>
+
+Note : Never use kill -9 (i.e. SIGKILL) to terminate a mongod instance.
